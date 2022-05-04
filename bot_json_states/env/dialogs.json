@@ -1,0 +1,44 @@
+{"states": [
+        {
+            "name": "Greeting",
+            "type": "greeting",
+            "next_state": "Greeting Reply Analysis",
+            "bot_messages": ["Доброе утро. Как тебе сегодня спалось? \n Давай оценим по шкале от 1 до 10"],
+            "user_answer_options": [[1,2,3,4,5], [6,7,8,9,10]]
+        },
+        {
+            "name": "Greeting Reply Analysis",
+            "type": "reaction",
+            "next_state": "{{resume dialog}}",
+            "bot_replies" : {
+                "1" : "", "2": "", "3": "", "4": "", "5": "",
+                "6" : "", "7": "", "8": "", "9": "", "10": ""
+            },
+            "incorrect_answer_replies": ["Можешь повторить? ))", "Попробуй еще раз", "Вот что ты сейчас сказал?"]
+        },
+        {
+            "name": "Air Topic",
+            "type": "new topic",
+            "next_state": "Air Quiz Question 1",
+            "bot_messages": ["Предлагаю тебе почитать статью: \n https://telegra.ph/Vozduh-04-27 \n Маякни как будешь готов"],
+            "user_answer_options": [["готов"]],
+            "incorrect_answer_replies": ["Не уверен, что правильно тебя понял, давай еще раз", "чего???"]
+        },
+
+        {
+            "name": "Air Quiz Question 1",
+            "type": "quiz",
+            "next_state": "Air Quiz Answer 1",
+            "bot_messages": "<b>Вопрос</b>. Какие из элементов не являются основными составляющими воздуха?",
+            "user_answer_options": [["Кислород"], ["Азот"], ["Неинертные газы"], ["Углекислый газ"], ["Вода"], ["Пар"]]
+        },
+        {
+            "name": "Air Quiz Answer 1",
+            "type": "quiz answer",
+            "next_state": "",
+            "user_answer_options": ["Кислород", "Азот", "Неинертные газы", "Углекислый газ", "Вода", "Пар"],
+            "correct_answer": "Неинертные газы",
+            "unknown_reply": ["Не уверен, что правильно тебя понял, давай еще раз", "чего???"]
+        }
+]
+}
